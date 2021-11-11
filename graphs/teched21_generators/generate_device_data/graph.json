@@ -1,0 +1,114 @@
+{
+    "properties": {},
+    "description": "Generate Device Data",
+    "processes": {
+        "readfile1": {
+            "component": "com.sap.file.read",
+            "metadata": {
+                "label": "Read File",
+                "x": 17,
+                "y": 12,
+                "height": 80,
+                "width": 120,
+                "generation": 1,
+                "config": {
+                    "mode": "Once",
+                    "connection": {
+                        "configurationType": "Connection Management",
+                        "connectionID": "DI_DATA_LAKE"
+                    },
+                    "path": "/shared/teched21/dwdstations.csv"
+                }
+            }
+        },
+        "writehanatable1": {
+            "component": "com.sap.hana.writeTable",
+            "metadata": {
+                "label": "Write HANA Table",
+                "x": 370.9999990463257,
+                "y": 12,
+                "height": 80,
+                "width": 120,
+                "generation": 1,
+                "config": {
+                    "connection": {
+                        "configurationType": "Configuration Manager",
+                        "connectionID": "HANA_DEVICES"
+                    },
+                    "configMode": "Static (from configuration)",
+                    "tableName": "DEVICES"
+                }
+            }
+        },
+        "generatedevicedata1": {
+            "component": "teched21.generate_device_data",
+            "metadata": {
+                "label": "Generate Device Data",
+                "x": 199.99999904632568,
+                "y": 3,
+                "height": 80,
+                "width": 120,
+                "extensible": true,
+                "generation": 1,
+                "config": {}
+            }
+        },
+        "graphterminator1": {
+            "component": "com.sap.util.graphTerminator",
+            "metadata": {
+                "label": "Graph Terminator",
+                "x": 555.9999980926514,
+                "y": 12,
+                "height": 80,
+                "width": 120,
+                "generation": 1,
+                "config": {}
+            }
+        }
+    },
+    "groups": [],
+    "connections": [
+        {
+            "metadata": {
+                "points": "141,43 194.99999904632568,43"
+            },
+            "src": {
+                "port": "file",
+                "process": "readfile1"
+            },
+            "tgt": {
+                "port": "input",
+                "process": "generatedevicedata1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "323.9999990463257,43 345,43 345,52 365.9999990463257,52"
+            },
+            "src": {
+                "port": "output",
+                "process": "generatedevicedata1"
+            },
+            "tgt": {
+                "port": "input",
+                "process": "writehanatable1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "494.9999990463257,43 522.9999985694885,43 522.9999985694885,52 550.9999980926514,52"
+            },
+            "src": {
+                "port": "success",
+                "process": "writehanatable1"
+            },
+            "tgt": {
+                "port": "stop",
+                "process": "graphterminator1"
+            }
+        }
+    ],
+    "inports": {},
+    "outports": {},
+    "metadata": {}
+}

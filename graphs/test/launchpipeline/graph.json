@@ -1,0 +1,32 @@
+{
+    "description": "Launch Pipeline",
+    "processes": {
+        "pipeline1": {
+            "component": "com.sap.dh.vflowpipeline",
+            "metadata": {
+                "label": "Pipeline",
+                "x": 392,
+                "y": 191,
+                "height": 80,
+                "width": 120,
+                "extensible": false,
+                "generation": 1,
+                "config": {
+                    "graphName": "test.pipelineoperator",
+                    "configurationSubstitutions": [
+                        {
+                            "name": "CITY",
+                            "value": "BARCELONA"
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "groups": [],
+    "connections": [],
+    "inports": {},
+    "outports": {},
+    "properties": {},
+    "metadata": {}
+}

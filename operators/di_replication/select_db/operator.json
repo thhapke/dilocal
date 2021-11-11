@@ -1,0 +1,40 @@
+{
+    "description": "Select DB",
+    "component": "com.sap.system.python3Operator",
+    "versionStatus": "active",
+    "inports": [
+        {
+            "name": "input",
+            "type": "message.table"
+        }
+    ],
+    "outports": [
+        {
+            "name": "log",
+            "type": "string"
+        },
+        {
+            "name": "output",
+            "type": "message.file"
+        },
+        {
+            "name": "nodata",
+            "type": "message"
+        }
+    ],
+    "iconsrc": "select.svg",
+    "config": {
+        "$type": "http://sap.com/vflow/di_replication.select_db.configSchema.json",
+        "script": "file://select_db.py",
+        "hanaConnection": {
+			"configurationType": "Configuration Manager",
+			"connectionID": "HANAC_Replication"
+		},
+        "package_size": 10,
+        "output" : "JSON",
+        "codecs": [
+            "utf-8",
+            "cp1250"
+        ]
+    }
+}

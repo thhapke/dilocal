@@ -1,0 +1,154 @@
+{
+    "properties": {},
+    "description": "To Null",
+    "processes": {
+        "runhanasql1": {
+            "component": "com.sap.hana.runSQL",
+            "metadata": {
+                "label": "Run HANA SQL",
+                "x": 350,
+                "y": 12,
+                "height": 80,
+                "width": 120,
+                "generation": 1,
+                "config": {
+                    "connection": {
+                        "configurationType": "Configuration Manager",
+                        "connectionID": "HC_DWC_TechEd2021"
+                    },
+                    "decimalOutputFormat": "Floating-point"
+                }
+            }
+        },
+        "tonullhana1": {
+            "component": "utils.to_NULL_hana",
+            "metadata": {
+                "label": "To Null HANA",
+                "x": 12,
+                "y": 12,
+                "height": 80,
+                "width": 120,
+                "extensible": true,
+                "generation": 1,
+                "config": {
+                    "num_value": -999,
+                    "str_value": "",
+                    "table_name": "\"TEST_TECHED#TECHED_TEST\".\"TECHED2021_DAILY_WEATHER\"",
+                    "num_columns": [
+                        "MAX_WINDGUST",
+                        "MEAN_WIND_VELOCITY",
+                        "PRECIPITATION_HEIGHT",
+                        "PRECIPITATION_TYPE",
+                        "SUN_DURATION",
+                        "SNOW_DEPTH",
+                        "CLOUD_COVER",
+                        "VAPOR_PRESSURE",
+                        "MEAN_PRESSURE",
+                        "MEAN_TEMPERATURE",
+                        "MEAN_REL_HUMIDITY",
+                        "MAX_TEMPERATURE",
+                        "MIN_TEMPERATURE",
+                        "MIN_AIR_TEMPERATURE"
+                    ],
+                    "str_columns": []
+                }
+            }
+        },
+        "conditionaltermination1": {
+            "component": "utils.termination",
+            "metadata": {
+                "label": "Conditional Termination",
+                "x": 534.9999990463257,
+                "y": 12,
+                "height": 80,
+                "width": 120,
+                "extensible": true,
+                "generation": 1,
+                "config": {}
+            }
+        },
+        "graphterminator1": {
+            "component": "com.sap.util.graphTerminator",
+            "metadata": {
+                "label": "Graph Terminator",
+                "x": 703.9999990463257,
+                "y": 12,
+                "height": 80,
+                "width": 120,
+                "generation": 1,
+                "config": {}
+            }
+        },
+        "wiretap1": {
+            "component": "com.sap.util.wiretap",
+            "metadata": {
+                "label": "Wiretap",
+                "x": 181,
+                "y": 12,
+                "height": 80,
+                "width": 120,
+                "generation": 1,
+                "ui": "dynpath",
+                "config": {}
+            }
+        }
+    },
+    "groups": [],
+    "connections": [
+        {
+            "metadata": {
+                "points": "474,43 501.99999952316284,43 501.99999952316284,52 529.9999990463257,52"
+            },
+            "src": {
+                "port": "success",
+                "process": "runhanasql1"
+            },
+            "tgt": {
+                "port": "input",
+                "process": "conditionaltermination1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "658.9999990463257,52 698.9999990463257,52"
+            },
+            "src": {
+                "port": "output",
+                "process": "conditionaltermination1"
+            },
+            "tgt": {
+                "port": "stop",
+                "process": "graphterminator1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "136,52 176,52"
+            },
+            "src": {
+                "port": "output",
+                "process": "tonullhana1"
+            },
+            "tgt": {
+                "port": "in",
+                "process": "wiretap1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "305,52 345,52"
+            },
+            "src": {
+                "port": "out",
+                "process": "wiretap1"
+            },
+            "tgt": {
+                "port": "input",
+                "process": "runhanasql1"
+            }
+        }
+    ],
+    "inports": {},
+    "outports": {},
+    "metadata": {}
+}

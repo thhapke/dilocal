@@ -1,0 +1,83 @@
+{
+    "description": "Import Hierarchy",
+    "processes": {
+        "hierarchyconverter1": {
+            "component": "catalog.hierarchy_converter",
+            "metadata": {
+                "label": "Hierarchy Converter",
+                "x": 497,
+                "y": 206,
+                "height": 80,
+                "width": 120,
+                "extensible": true,
+                "generation": 1,
+                "config": {}
+            }
+        },
+        "readfile1": {
+            "component": "com.sap.file.read",
+            "metadata": {
+                "label": "Read File",
+                "x": 312,
+                "y": 206,
+                "height": 80,
+                "width": 120,
+                "generation": 1,
+                "config": {
+                    "mode": "Once",
+                    "connection": {
+                        "configurationType": "Connection Management",
+                        "connectionID": "DI_DATA_LAKE"
+                    },
+                    "path": "/shared/catalog/api/availability.json"
+                }
+            }
+        },
+        "wiretap1": {
+            "component": "com.sap.util.wiretap",
+            "metadata": {
+                "label": "Wiretap",
+                "x": 761,
+                "y": 219,
+                "height": 80,
+                "width": 120,
+                "generation": 1,
+                "ui": "dynpath",
+                "config": {}
+            }
+        }
+    },
+    "groups": [],
+    "connections": [
+        {
+            "metadata": {
+                "points": "417,237 464,237 464,246 511,246"
+            },
+            "src": {
+                "port": "file",
+                "process": "readfile1"
+            },
+            "tgt": {
+                "port": "input",
+                "process": "hierarchyconverter1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "621,246 688.5,246 688.5,259 756,259"
+            },
+            "src": {
+                "port": "output",
+                "process": "hierarchyconverter1"
+            },
+            "tgt": {
+                "port": "in",
+                "process": "wiretap1"
+            }
+        }
+    ],
+    "inports": {},
+    "outports": {},
+    "properties": {},
+    "metadata": {}
+}

@@ -1,0 +1,55 @@
+{
+    "description": "MetadataAPI Connection Test",
+    "processes": {
+        "httpconnection1": {
+            "component": "utils.http_connection",
+            "metadata": {
+                "label": "HTTP Connection",
+                "x": 258,
+                "y": 180,
+                "height": 80,
+                "width": 120,
+                "extensible": true,
+                "generation": 1,
+                "config": {
+                    "http_connection": {
+                        "connectionID": "MetadataAPI"
+                    }
+                }
+            }
+        },
+        "wiretap1": {
+            "component": "com.sap.util.wiretap",
+            "metadata": {
+                "label": "Wiretap",
+                "x": 515,
+                "y": 172,
+                "height": 80,
+                "width": 120,
+                "generation": 1,
+                "ui": "dynpath",
+                "config": {}
+            }
+        }
+    },
+    "groups": [],
+    "connections": [
+        {
+            "metadata": {
+                "points": "382,220 446,220 446,212 510,212"
+            },
+            "src": {
+                "port": "output",
+                "process": "httpconnection1"
+            },
+            "tgt": {
+                "port": "in",
+                "process": "wiretap1"
+            }
+        }
+    ],
+    "inports": {},
+    "outports": {},
+    "properties": {},
+    "metadata": {}
+}

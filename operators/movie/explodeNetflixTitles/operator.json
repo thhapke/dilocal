@@ -1,0 +1,23 @@
+{
+    "description": "Explode Netflix Titles",
+    "component": "com.sap.system.python3Operator",
+    "versionStatus": "active",
+    "inports": [
+        {
+            "name": "input",
+            "type": "message.file"
+        }
+    ],
+    "outports": [
+        {
+            "name": "output",
+            "type": "message.table"
+        }
+    ],
+    "icon": "puzzle-piece",
+    "config": {
+        "$type": "http://sap.com/vflow/movie.explodeNetflixTitles.configSchema.json",
+        "script": "file://script.py",
+        "type": "*"
+    }
+}

@@ -1,0 +1,174 @@
+{
+    "properties": {},
+    "description": "Next Weather Station TEST",
+    "processes": {
+        "readfile1": {
+            "component": "com.sap.file.read",
+            "metadata": {
+                "label": "Read File",
+                "x": 363,
+                "y": 123,
+                "height": 80,
+                "width": 120,
+                "generation": 1,
+                "config": {
+                    "mode": "Once",
+                    "connection": {
+                        "configurationType": "Connection Management",
+                        "connectionID": "DI_DATA_LAKE"
+                    },
+                    "path": "/shared/teched21/dwdstations.csv"
+                }
+            }
+        },
+        "readhanatable1": {
+            "component": "com.sap.hana.readTable",
+            "metadata": {
+                "label": "Read HANA Table",
+                "x": 363,
+                "y": 261,
+                "height": 80,
+                "width": 120,
+                "generation": 1,
+                "config": {
+                    "connection": {
+                        "configurationType": "Configuration Manager",
+                        "connectionID": "HANA_DEVICES"
+                    },
+                    "configMode": "Static (from configuration)",
+                    "tableName": "DEVICES",
+                    "columns": [
+                        {
+                            "name": "SERIAL_NO",
+                            "boolean": false
+                        },
+                        {
+                            "name": "LATITUDE",
+                            "boolean": false
+                        },
+                        {
+                            "name": "LONGITUDE",
+                            "boolean": false
+                        }
+                    ]
+                }
+            }
+        },
+        "writehanatable1": {
+            "component": "com.sap.hana.writeTable",
+            "metadata": {
+                "label": "Write HANA Table",
+                "x": 756,
+                "y": 203,
+                "height": 80,
+                "width": 120,
+                "generation": 1,
+                "config": {
+                    "connection": {
+                        "configurationType": "Configuration Manager",
+                        "connectionID": "DWC_HC_Teched_VII"
+                    },
+                    "configMode": "Static (from configuration)",
+                    "statementType": "UPSERT",
+                    "tableName": "\"TECHED2021DAT160VII#TECHED2021DAT160VII\".\"TECHED2021_WEATHERSTATION_TAXY\""
+                }
+            }
+        },
+        "graphterminator1": {
+            "component": "com.sap.util.graphTerminator",
+            "metadata": {
+                "label": "Graph Terminator",
+                "x": 938,
+                "y": 212,
+                "height": 80,
+                "width": 120,
+                "generation": 1,
+                "config": {}
+            }
+        },
+        "nextneighbour1": {
+            "component": "utils.next_neighbour",
+            "metadata": {
+                "label": "Next Neighbour",
+                "x": 580,
+                "y": 189,
+                "height": 80,
+                "width": 120,
+                "extensible": true,
+                "generation": 1,
+                "config": {}
+            }
+        },
+        "wiretap1": {
+            "component": "com.sap.util.wiretap",
+            "metadata": {
+                "label": "Wiretap",
+                "x": 795,
+                "y": 82,
+                "height": 80,
+                "width": 120,
+                "generation": 1,
+                "ui": "dynpath",
+                "config": {}
+            }
+        }
+    },
+    "groups": [],
+    "connections": [
+        {
+            "metadata": {
+                "points": "880,234 906.5,234 906.5,252 933,252"
+            },
+            "src": {
+                "port": "success",
+                "process": "writehanatable1"
+            },
+            "tgt": {
+                "port": "stop",
+                "process": "graphterminator1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "487,154 531,154 531,220 575,220"
+            },
+            "src": {
+                "port": "file",
+                "process": "readfile1"
+            },
+            "tgt": {
+                "port": "net",
+                "process": "nextneighbour1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "487,292 531,292 531,238 575,238"
+            },
+            "src": {
+                "port": "success",
+                "process": "readhanatable1"
+            },
+            "tgt": {
+                "port": "main",
+                "process": "nextneighbour1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "704,229 747,229 747,122 790,122"
+            },
+            "src": {
+                "port": "output",
+                "process": "nextneighbour1"
+            },
+            "tgt": {
+                "port": "in",
+                "process": "wiretap1"
+            }
+        }
+    ],
+    "inports": {},
+    "outports": {},
+    "metadata": {}
+}

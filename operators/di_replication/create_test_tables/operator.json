@@ -1,0 +1,24 @@
+{
+    "description": "Create Test Tables",
+    "component": "com.sap.system.python3Operator",
+    "versionStatus": "active",
+    "outports": [
+        {
+            "name": "log",
+            "type": "string"
+        },
+        {
+            "name": "output",
+            "type": "message"
+        }
+    ],
+    "iconsrc": "create_test_tables.svg",
+    "config": {
+        "$type": "http://sap.com/vflow/di_replication.create_test_tables.configSchema.json",
+        "base_tablename": "REPLICATION.TEST_TABLE",
+        "num_drop_tables": 5,
+        "num_new_tables": 5,
+        "script": "file://create_test_tables.py",
+        "table_repos": "REPLICATION.TABLE_REPOS"
+    }
+}

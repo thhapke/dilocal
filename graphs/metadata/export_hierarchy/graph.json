@@ -1,0 +1,88 @@
+{
+    "properties": {},
+    "description": "Export Hierarchy",
+    "processes": {
+        "writefile1": {
+            "component": "com.sap.file.write",
+            "metadata": {
+                "label": "Write File",
+                "x": 365.9999990463257,
+                "y": 12,
+                "height": 80,
+                "width": 120,
+                "generation": 1,
+                "config": {
+                    "connection": {
+                        "configurationType": "Connection Management",
+                        "connectionID": "DI_DATA_LAKE"
+                    },
+                    "pathMode": "Static with placeholders",
+                    "path": "/shared/catalog/api/<header:hierarchy>3.json",
+                    "mode": "Overwrite"
+                }
+            }
+        },
+        "graphterminator1": {
+            "component": "com.sap.util.graphTerminator",
+            "metadata": {
+                "label": "Graph Terminator",
+                "x": 550.9999980926514,
+                "y": 12,
+                "height": 80,
+                "width": 120,
+                "generation": 1,
+                "config": {}
+            }
+        },
+        "catalogexport1": {
+            "component": "catalog.export",
+            "metadata": {
+                "label": "Catalog Export ",
+                "x": 171,
+                "y": 12,
+                "height": 80,
+                "width": 120,
+                "extensible": true,
+                "generation": 1,
+                "config": {
+                    "hierarchy": "License",
+                    "http_connection": {
+                        "connectionID": "MetadataAPI"
+                    }
+                }
+            }
+        }
+    },
+    "groups": [],
+    "connections": [
+        {
+            "metadata": {
+                "points": "489.9999990463257,43 517.9999985694885,43 517.9999985694885,52 545.9999980926514,52"
+            },
+            "src": {
+                "port": "file",
+                "process": "writefile1"
+            },
+            "tgt": {
+                "port": "stop",
+                "process": "graphterminator1"
+            }
+        },
+        {
+            "metadata": {
+                "points": "295,52 360.9999990463257,52"
+            },
+            "src": {
+                "port": "output",
+                "process": "catalogexport1"
+            },
+            "tgt": {
+                "port": "file",
+                "process": "writefile1"
+            }
+        }
+    ],
+    "inports": {},
+    "outports": {},
+    "metadata": {}
+}

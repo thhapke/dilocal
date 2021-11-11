@@ -1,0 +1,27 @@
+{
+    "description": "Block",
+    "component": "com.sap.system.python3Operator",
+    "versionStatus": "active",
+    "inports": [
+        {
+            "name": "input",
+            "type": "message"
+        }
+    ],
+    "outports": [
+        {
+            "name": "log",
+            "type": "string"
+        },
+        {
+            "name": "output",
+            "type": "message"
+        }
+    ],
+    "iconsrc": "block.svg",
+    "config": {
+        "$type": "http://sap.com/vflow/di_replication.block.configSchema.json",
+        "package_size": 10,
+        "script": "file://block.py"
+    }
+}

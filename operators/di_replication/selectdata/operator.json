@@ -1,0 +1,26 @@
+{
+    "description": "Select",
+    "component": "com.sap.system.python3Operator",
+    "versionStatus": "active",
+    "inports": [
+        {
+            "name": "input",
+            "type": "message.table"
+        }
+    ],
+    "outports": [
+        {
+            "name": "log",
+            "type": "string"
+        },
+        {
+            "name": "output",
+            "type": "message"
+        }
+    ],
+    "iconsrc": "select.svg",
+    "config": {
+        "$type": "http://sap.com/vflow/di_replication.selectdata.configSchema.json",
+        "script": "file://selectdata.py"
+    }
+}

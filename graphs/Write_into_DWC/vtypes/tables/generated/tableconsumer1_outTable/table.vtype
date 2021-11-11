@@ -1,0 +1,42 @@
+{
+	"name": "generated.tableconsumer1_outTable",
+	"description": "auto-generated generated.tableconsumer1_outTable",
+	"vflow.type": "table",
+	"keys": [
+		"SERIAL_NO"
+	],
+	"rows": {
+		"components": [
+			{
+				"SERIAL_NO": {
+					"vflow.type": "scalar",
+					"vtype-ID": "com.sap.core.int32"
+				}
+			},
+			{
+				"DEVICE_TYPE": {
+					"vflow.type": "scalar",
+					"vtype-ID": "$GRAPH.generated.string_20"
+				}
+			},
+			{
+				"INSTALLATION_DATE": {
+					"vflow.type": "scalar",
+					"vtype-ID": "com.sap.core.timestamp"
+				}
+			},
+			{
+				"LATITUDE": {
+					"vflow.type": "scalar",
+					"vtype-ID": "com.sap.core.float64"
+				}
+			},
+			{
+				"LONGITUDE": {
+					"vflow.type": "scalar",
+					"vtype-ID": "com.sap.core.float64"
+				}
+			}
+		]
+	}
+}

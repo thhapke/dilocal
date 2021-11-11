@@ -1,0 +1,27 @@
+{
+    "description": "Populate Test Tables",
+    "component": "com.sap.system.python3Operator",
+    "versionStatus": "active",
+    "inports": [
+        {
+            "name": "input",
+            "type": "message"
+        }
+    ],
+    "outports": [
+        {
+            "name": "log",
+            "type": "string"
+        },
+        {
+            "name": "output",
+            "type": "message.table"
+        }
+    ],
+    "iconsrc": "populate_test_tables.svg",
+    "config": {
+        "$type": "http://sap.com/vflow/di_replication.populate_test_tables.configSchema.json",
+        "num_rows": 100,
+        "script": "file://populate_test_tables.py"
+    }
+}
