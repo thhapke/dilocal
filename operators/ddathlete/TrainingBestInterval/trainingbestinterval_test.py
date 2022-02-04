@@ -1,6 +1,6 @@
 import trainingbestinterval
-from utils.mock_di_api import mock_api
-from utils.operator_test import operator_test
+from archive.utils.mock_di_api import mock_api
+from archive.utils.operator_test import operator_test
 
 
 import pandas as pd

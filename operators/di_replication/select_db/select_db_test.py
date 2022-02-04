@@ -14,8 +14,8 @@ print('PYTHONPATH: {}'.format(sys.path))
 
 
 import select_db
-from utils.mock_di_api import mock_api, mock_config
-from utils.operator_test import operator_test
+from archive.utils.mock_di_api import mock_api
+from archive.utils.operator_test import operator_test
 
 import yaml
 from hdbcli import dbapi

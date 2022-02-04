@@ -6,8 +6,8 @@ sys.path.insert(0, proj_dir)
 import script
 import pandas as pd
 
-from utils.mock_di_api import mock_api
-from utils.operator_test import operator_test
+from archive.utils.mock_di_api import mock_api
+from archive.utils.operator_test import operator_test
         
 api = mock_api(__file__)     # class instance of mock_api
 mock_api.print_send_msg = True  # set class variable for printing api.send

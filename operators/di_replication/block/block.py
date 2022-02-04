@@ -1,5 +1,5 @@
 # DI-PYOPERATOR GENERATED - DO NOT CHANGE this line and the following 3 lines (Deleted when uploaded.)
-from utils.mock_di_api import mock_api
+from archive.utils.mock_di_api import mock_api
 api = mock_api(__file__)
 #
 #  SPDX-FileCopyrightText: 2021 Thorsten Hapke <thorsten.hapke@sap.com>

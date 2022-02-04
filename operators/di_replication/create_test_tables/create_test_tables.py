@@ -5,10 +5,9 @@
 #
 
 # DI-PYOPERATOR GENERATED - DO NOT CHANGE this line and the following 3 lines (Deleted when uploaded.)
-from utils.mock_di_api import mock_api
+from archive.utils.mock_di_api import mock_api
 api = mock_api(__file__)
 
-import copy
 from datetime import datetime
 
 operator_name = 'create_test_tables'

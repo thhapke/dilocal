@@ -5,7 +5,7 @@
 #
 
 # DI-PYOPERATOR GENERATED - DO NOT CHANGE this line and the following 3 lines (Deleted when uploaded.)
-from utils.mock_di_api import mock_api
+from archive.utils.mock_di_api import mock_api
 
 api = mock_api(__file__)
 
@@ -13,7 +13,6 @@ import copy
 from datetime import datetime
 
 import pandas as pd
-import numpy as np
 from hdbcli import dbapi
 
 typemap = {1: {'hana': 'TINYINT', 'pandas': 'int64'}, 2: {'hana': 'SMALLINT', 'pandas': 'int64'}, 3: {'hana': 'INT', 'pandas': 'int64'},
