@@ -1,11 +1,11 @@
 {
-    "description": "Catalog Import",
+    "description": "Catalog Hierarchy Import",
     "component": "com.sap.system.python3Operator",
     "versionStatus": "active",
     "inports": [
         {
             "name": "input",
-            "type": "message"
+            "type": "message.file"
         }
     ],
     "outports": [
@@ -17,10 +17,10 @@
     "iconsrc": "ImportHierarchy.svg",
     "config": {
         "$type": "http://sap.com/vflow/catalog.import_hierarchy.configSchema.json",
-        "script": "file://script.py"
+        "script": "file://script.py",
+        "tenant": "default"
     },
     "tags": {
-        "dimetadata_api": "",
-        "rdflib": ""
+        "diadmin": ""
     }
 }

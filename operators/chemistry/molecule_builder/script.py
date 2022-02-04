@@ -31,9 +31,9 @@ def on_input(msg):
     #table_dict['columns'] = [{'name':col,'class': col_types[col].lower()} for col in df.columns ]
     #att['table'] = table_dict
     #data = df.values.tolist()
-	att = copy.deepcopy(msg.attributes)
-	msg_output = api.Message(attributes=att,body=data)
-	api.send('output',msg_output)  # data type: message
+    att = copy.deepcopy(msg.attributes)
+    msg_output = api.Message(attributes=att,body=data)
+    api.send('output',msg_output)  # data type: message
 
 
 api.set_port_callback(['input'],on_input)

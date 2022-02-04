@@ -1,6 +1,6 @@
 # For local development
-from utils.mock_di_api import mock_api
-api = mock_api(__file__,False)
+#from utils.mock_di_api import mock_api
+#api = mock_api(__file__,False)
 
 
 import pandas as pd

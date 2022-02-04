@@ -14,8 +14,9 @@ optest = operator_test(__file__)
 
 # config parameter
 api.config.http_connection = optest.get_json('http_connection.json')
+api.config.tenant = "default"
 
 file = 'License_converted.json'
-hierarchy = optest.get_json(file)
-msg = api.Message(attributes={'hierarchy':file},body=hierarchy)
+msg = optest.get_msgfile(file)
+msg.attributes['hierarchy'] = file.split('.')[0]
 script.on_input(msg)

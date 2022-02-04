@@ -1,4 +1,6 @@
-
+# Mock apis needs to be commented before used within SAP Data Intelligence
+from diadmin.dimockapi.mock_api import mock_api
+api = mock_api(__file__)
 
 def on_input(msg) :
 

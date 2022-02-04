@@ -4,33 +4,35 @@ api = mock_api(__file__)
 
 import copy
 import os
+import io
+import json
 from urllib.parse import urljoin
 
-
-from dimetadata_api.catalog import add_path_id_list, upload_hierarchy
+from diadmin.metadata_api import catalog
 
 def on_input(msg):
 
     # Catalogue from file
-    hierarchy = msg.body
+    hierarchy = json.load(io.BytesIO(msg.body))
+    hierarchy = catalog.convert_standard_hierarchy(hierarchy)
     if not 'paths' in hierarchy:
-        add_path_id_list(hierarchy)
+        catalog.add_path_id_list(hierarchy)
 
     host = api.config.http_connection['connectionProperties']['host']
     pwd = api.config.http_connection['connectionProperties']['password']
     user = api.config.http_connection['connectionProperties']['user']
     path = api.config.http_connection['connectionProperties']['path']
-    tenant = os.environ.get('VSYSTEM_TENANT')
-    if not tenant :
-        tenant = 'default'
+    tenant = api.config.tenant
 
     conn = {'url':urljoin(host,path),'auth':(tenant+'\\'+ user,pwd)}
 
-    upload_hierarchy(conn,hierarchy)
+    hierarchy = catalog.convert_standard_hierarchy(hierarchy)
+    catalog.add_path_id_list(hierarchy)
+    catalog.upload_hierarchy(conn,hierarchy)
 
     att = copy.deepcopy(msg.attributes)
     msg_success = api.Message(attributes=att,body=hierarchy)
     api.send('success',msg_success)  # data type: message
 
 
-api.set_port_callback(['input'],on_input)
+api.set_port_callback('input',on_input)
